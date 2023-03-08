@@ -138,8 +138,6 @@ program
     ];
 
     try {
-      //loading true
-
       const response = await openai.createChatCompletion({
         model: 'gpt-3.5-turbo',
         messages: newMessages,
@@ -147,7 +145,7 @@ program
 
       saveMessages(newMessages);
 
-      console.log(`A: ${response.data.choices[0].message?.content}`);
+      console.log(response.data.choices[0].message?.content);
     } catch (err) {
       console.error(err);
     } finally {
