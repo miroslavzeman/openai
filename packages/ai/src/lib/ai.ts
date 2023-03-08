@@ -12,6 +12,15 @@ const context = {
 };
 
 /**
+ * Initial configuration message
+ */
+const configurationMessage: ChatCompletionRequestMessage = {
+  role: 'system',
+  content:
+    'I want you to act as a linux terminal. I will ask questions and you will reply with command for terminal. I want you to only reply with the terminal command nothing else. do not write explanations. do not type commands unless I instruct you to do so. When I need to tell you something in English, I will do so by putting text inside curly brackets {like this}.',
+};
+
+/**
  * The path to the configuration file
  */
 const configPathname = path.join(__dirname, 'key.json');
@@ -68,24 +77,22 @@ const loadMessages = () => {
     const fileContent = fs.readFileSync(messagesPathname, 'utf8');
     return JSON.parse(fileContent);
   } else {
-    return [
-      {
-        role: 'system',
-        content:
-          'I want you to act as a linux terminal. I will ask questions and you will reply with command for terminal. I want you to only reply with the terminal command nothing else. do not write explanations. do not type commands unless I instruct you to do so. When I need to tell you something in English, I will do so by putting text inside curly brackets {like this}.',
-      },
-    ];
+    return [configurationMessage];
   }
 };
 
 const saveMessages = (messages: ChatCompletionRequestMessage[]) => {
   // Check amount of messages, if larger than limit, remove the oldest one.
-  const limit = 10;
-  const start = Math.max(0, messages.length - limit);
-  const limitMessages = messages.slice(start);
+  const limit = 20;
+  let limitMessages = messages;
+
+  if (messages.length >= limit) {
+    const start = Math.max(0, limitMessages.length - limit);
+    limitMessages = [configurationMessage, ...messages.slice(start)];
+  }
 
   // Store the configuration in the file
-  const config = JSON.stringify({ messages: limitMessages });
+  const config = JSON.stringify(limitMessages);
 
   fs.writeFileSync(messagesPathname, config);
 };
@@ -129,6 +136,7 @@ program
     const openai = new OpenAIApi(configuration);
 
     const messages = loadMessages();
+
     const newMessages = [
       ...messages,
       {
@@ -143,9 +151,17 @@ program
         messages: newMessages,
       });
 
-      saveMessages(newMessages);
+      const answer = response.data.choices[0].message;
 
-      console.log(response.data.choices[0].message?.content);
+      if (answer) {
+        saveMessages([...newMessages, answer]);
+
+        console.log(answer.content);
+        console.log('');
+        console.log(
+          `Prompt: ${response.data.usage?.prompt_tokens}, Completion: ${response.data.usage?.completion_tokens}, Total: ${response.data.usage?.total_tokens}`
+        );
+      }
     } catch (err) {
       console.error(err);
     } finally {
