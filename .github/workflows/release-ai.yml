@@ -21,6 +21,11 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
+      - name: Author identity
+        run: |
+          git config --global user.email "me@miroslavzeman.dev"
+          git config --global user.name "Miroslav Zeman"
+
       - name: Changelog
         id: changelog
         env:
