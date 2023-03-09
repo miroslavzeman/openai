@@ -28,12 +28,12 @@ jobs:
           main-branch-name: master
 
       - name: Changelog
+        id: changelog
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: release-it --ci
 
       - name: Npm
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: yarn nx ai:publish --version=${{ steps.version.outputs.version }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: yarn nx ai:publish --version=${{ steps.changelog.outputs.version }}
