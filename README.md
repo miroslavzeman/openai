@@ -5,10 +5,7 @@ Have you ever wanted to use OpenAI's ChatGPT from the command line? Well now you
 ## Installation
 
 ```console
-yarn 
 $ yarn global add ADD_PACKAGE_NAME
-
-npm
 $ npm install -g ADD_PACKAGE_NAME
 ```
 
