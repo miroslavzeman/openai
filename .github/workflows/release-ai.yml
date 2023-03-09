@@ -25,7 +25,7 @@ jobs:
         id: changelog
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: release-it --ci
+        run: yarn release-it --ci
 
       - name: Npm
         env:
