@@ -5,11 +5,11 @@ Have you ever wanted to use OpenAI's ChatGPT from the command line? Well now you
 ## Installation
 
 ```console
-// yarn 
-yarn global add ADD_PACKAGE_NAME
+yarn 
+$ yarn global add ADD_PACKAGE_NAME
 
-// npm
-npm install -g ADD_PACKAGE_NAME
+npm
+$ npm install -g ADD_PACKAGE_NAME
 ```
 
 ## Usage
@@ -35,19 +35,21 @@ Options:
 Once you setup your API key you're ready to go!
 
 ```console
-ai "Hey! Isn't it amazing to talk to you through my terminal? Finally, I don't have to go away from my IDE!"
+$ ai "Hey! Isn't it amazing to talk to you through my terminal? Finally, I don't have to go away from my IDE!"
+
+I'm glad you find it convenient! As an AI language model, my purpose is to assist you in any way I can. If you have any specific questions or requests, feel free to let me know.
 ```
 
 ## Additional options
 
-### Usage calculation
+### Price and token usage
 
 You can use the `-u` or `--usage` flag to see how many tokens you have spent and how much it cost you.
 
 ```console
-$ ai -u "How much does it cost to use the tool?"
+$ ai -u "How much does ChatGPT API costs to use the tool?"
 
-That depends...
+The ChatGPT API pricing details can be found on the official website of ChatGPT. Here is the link to the pricing section: https://openai.com/pricing
 
-Prompt: 149, Completion: 43, Total: 192, Price: 0.000038400000000000005$
+Prompt: 352, Completion: 40, Total: 392, Price: 0.00007840000000000001$
 ```
