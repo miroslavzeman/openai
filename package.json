@@ -1,8 +1,10 @@
 {
   "name": "openai-cli",
-  "version": "0.0.0",
+  "version": "0.0.0-development",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "semantic-release": "semantic-release"
+  },
   "private": true,
   "dependencies": {
     "commander": "^10.0.0",
@@ -27,6 +29,14 @@
     "nx": "13.9.5",
     "prettier": "^2.5.1",
     "ts-jest": "27.0.5",
-    "typescript": "~4.5.2"
+    "typescript": "~4.5.2",
+    "semantic-release": "^20.1.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/miroslavzeman/openai-cli.git"
+  },
+  "publishConfig": {
+    "access": "restricted"
   }
 }
