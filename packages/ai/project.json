@@ -26,6 +26,24 @@
         "jestConfig": "packages/ai/jest.config.js",
         "passWithNoTests": true
       }
+    },
+    "publish": {
+      "builder": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          "cd packages/ai && npm version {args.version}",
+          {
+            "command": "yarn nx run ai:build --production",
+            "forwardAllArgs": false
+          },
+          {
+            "command": "cd dist/packages/ai && npm publish",
+            "forwardAllArgs": false
+          }
+        ],
+        "cwd": "./",
+        "parallel": false
+      }
     }
   },
   "tags": []
