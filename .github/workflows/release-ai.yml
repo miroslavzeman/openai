@@ -1,10 +1,8 @@
-name: Release
+name: Release OpenAI CLI
 on:
   workflow_dispatch:
 
 jobs:
-  ci:
-    uses: ./.github/workflows/ci.yml
   release:
     name: Release
     runs-on: ubuntu-latest
@@ -29,10 +27,13 @@ jobs:
         with:
           main-branch-name: master
 
-      - run: yarn nx affected:build
-
-      - name: Release
+      - name: Changelog
+        id: changelog
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: npx semantic-release
+        run: release-it --ci
+
+      - name: Npm
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: yarn nx cli:publish --version=${{ steps.changelog.outputs.version }}

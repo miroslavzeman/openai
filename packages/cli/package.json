@@ -1,0 +1,17 @@
+{
+  "name": "@miroslavzeman/openai-cli",
+  "description": "ChatGPT API inside of terminal running on Node. 🚀",
+  "version": "1.0.0",
+  "license": "MIT",
+  "author": "Miroslav Zeman <me@miroslavzeman.dev>",
+  "type": "commonjs",
+  "keywords": [
+    "chatgpt",
+    "api",
+    "node",
+    "cli"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

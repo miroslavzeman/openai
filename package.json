@@ -1,11 +1,8 @@
 {
   "name": "openai-cli",
+  "description": "A monorepo with ChatGPT extensions. 🚀",
   "version": "0.0.0-development",
   "license": "MIT",
-  "scripts": {
-    "semantic-release": "semantic-release"
-  },
-  "private": true,
   "dependencies": {
     "commander": "^10.0.0",
     "openai": "^3.2.1",
@@ -19,6 +16,7 @@
     "@nrwl/linter": "13.9.5",
     "@nrwl/node": "^15.8.5",
     "@nrwl/workspace": "13.9.5",
+    "@release-it/conventional-changelog": "^5.1.1",
     "@types/jest": "27.0.2",
     "@types/node": "^18.14.6",
     "@typescript-eslint/eslint-plugin": "~5.10.0",
@@ -29,14 +27,13 @@
     "nx": "13.9.5",
     "prettier": "^2.5.1",
     "ts-jest": "27.0.5",
-    "typescript": "~4.5.2",
-    "semantic-release": "^20.1.1"
+    "typescript": "~4.5.2"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/miroslavzeman/openai-cli.git"
   },
   "publishConfig": {
-    "access": "restricted"
+    "access": "public"
   }
 }
