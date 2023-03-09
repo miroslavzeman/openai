@@ -1,1 +1,1 @@
-import './lib/ai';
+import './lib/commander';

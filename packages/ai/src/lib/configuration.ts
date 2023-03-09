@@ -1,20 +1,24 @@
-import { Command } from 'commander';
-import * as fs from 'fs';
-import * as path from 'path';
-import { Configuration, OpenAIApi } from 'openai';
 import { ChatCompletionRequestMessage } from 'openai/api';
+import * as path from 'path';
+import * as fs from 'fs';
+
+interface Context {
+  apiKey: string | undefined;
+  showUsage: boolean;
+}
 
 /**
  * The context of the program
  */
-const context = {
+export const context: Context = {
   apiKey: undefined,
+  showUsage: false,
 };
 
 /**
  * Initial configuration message
  */
-const configurationMessage: ChatCompletionRequestMessage = {
+export const configurationMessage: ChatCompletionRequestMessage = {
   role: 'system',
   content:
     'I want you to act as a linux terminal. I will ask questions and you will reply with command for terminal. I want you to only reply with the terminal command nothing else. do not write explanations. do not type commands unless I instruct you to do so. When I need to tell you something in English, I will do so by putting text inside curly brackets {like this}.',
@@ -29,7 +33,7 @@ const messagesPathname = path.join(__dirname, 'messages.json');
 /**
  * Load the configuration from the file
  */
-const loadConfiguration = () => {
+export const loadConfiguration = () => {
   if (fs.existsSync(configPathname)) {
     // Load the configuration from the file
     const fileContent = fs.readFileSync(configPathname, 'utf8');
@@ -52,7 +56,7 @@ const loadConfiguration = () => {
  * Save the configuration to the file
  * @param apiKey
  */
-const saveConfiguration = (apiKey: string) => {
+export const saveConfiguration = (apiKey: string) => {
   if (!apiKey) {
     console.error(
       'No API key found. You must provide one with the --apiKey option before you start using the tool.'
@@ -71,7 +75,7 @@ const saveConfiguration = (apiKey: string) => {
  * Return conversation messages if they exists.
  * If not return a terminal configuration message
  */
-const loadMessages = () => {
+export const loadMessages = () => {
   if (fs.existsSync(messagesPathname)) {
     // Load the configuration from the file
     const fileContent = fs.readFileSync(messagesPathname, 'utf8');
@@ -81,7 +85,11 @@ const loadMessages = () => {
   }
 };
 
-const saveMessages = (messages: ChatCompletionRequestMessage[]) => {
+/**
+ * Save messages history to the file to keep the chat history state.
+ * @param messages
+ */
+export const saveMessages = (messages: ChatCompletionRequestMessage[]) => {
   // Check amount of messages, if larger than limit, remove the oldest one.
   const limit = 20;
   let limitMessages = messages;
@@ -96,80 +104,3 @@ const saveMessages = (messages: ChatCompletionRequestMessage[]) => {
 
   fs.writeFileSync(messagesPathname, config);
 };
-
-const program = new Command();
-
-/**
- * Initialize the program and load the configuration
- */
-program.version('1.0.0').description('A simple ChatGPT CLI tool');
-
-/**
- * Make sure the configuration is loaded before any action except init
- */
-program.hook('preAction', (thisCommand, actionCommand) => {
-  if (actionCommand.name() !== 'init') loadConfiguration();
-});
-
-/**
- * Initialize the configuration file with the API key
- */
-program
-  .command('init')
-  .description('Initialize the tool with your API key')
-  .option('-k, --apiKey <apiKey>', 'Your API key')
-  .action(({ apiKey }) => saveConfiguration(apiKey));
-
-/**
- * Handle the message to send to the AI
- */
-program
-  .argument('<message>', 'The message to send to the AI')
-  .action(async (message) => {
-    const { apiKey } = context;
-
-    const configuration = new Configuration({
-      organization: 'org-nkQjz99zFnaYc9zwnMbfBoAP',
-      apiKey,
-    });
-
-    const openai = new OpenAIApi(configuration);
-
-    const messages = loadMessages();
-
-    const newMessages = [
-      ...messages,
-      {
-        role: 'user',
-        content: message,
-      },
-    ];
-
-    try {
-      const response = await openai.createChatCompletion({
-        model: 'gpt-3.5-turbo',
-        messages: newMessages,
-      });
-
-      const answer = response.data.choices[0].message;
-
-      if (answer) {
-        saveMessages([...newMessages, answer]);
-
-        console.log(answer.content);
-        console.log('');
-        console.log(
-          `Prompt: ${response.data.usage?.prompt_tokens}, Completion: ${response.data.usage?.completion_tokens}, Total: ${response.data.usage?.total_tokens}`
-        );
-      }
-    } catch (err) {
-      console.error(err);
-    } finally {
-      //loading false
-    }
-  });
-
-/**
- * Pass the arguments to the program
- */
-program.parse(process.argv);
