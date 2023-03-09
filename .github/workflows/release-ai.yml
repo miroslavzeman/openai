@@ -30,7 +30,9 @@ jobs:
         id: changelog
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: yarn release-it --ci --dry-run
+        run: |
+          yarn release-it --ci --dry-run
+          echo "${{ toJson(steps.changelog.outputs) }}"
 
       - name: Npm
         env:
