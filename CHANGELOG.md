@@ -1,5 +1,12 @@
 
 
+## [0.0.1](https://github.com/miroslavzeman/openai-cli/compare/0.0.0...0.0.1) (2023-03-09)
+
+
+### Bug Fixes
+
+* workflow ([#11](https://github.com/miroslavzeman/openai-cli/issues/11)) ([adbfca1](https://github.com/miroslavzeman/openai-cli/commit/adbfca134db70964da74a6cd9eb7aac1f3d9c343))
+
 # 0.0.0 (2023-03-09)
 
 
