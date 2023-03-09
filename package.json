@@ -1,8 +1,8 @@
 {
   "name": "openai-cli",
+  "description": "A monorepo with ChatGPT extension acting like a terminal AI. 🚀",
   "version": "0.0.0-development",
   "license": "MIT",
-  "private": true,
   "dependencies": {
     "commander": "^10.0.0",
     "openai": "^3.2.1",
@@ -34,6 +34,6 @@
     "url": "https://github.com/miroslavzeman/openai-cli.git"
   },
   "publishConfig": {
-    "access": "restricted"
+    "access": "public"
   }
 }

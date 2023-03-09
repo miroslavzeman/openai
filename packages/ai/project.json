@@ -31,15 +31,9 @@
       "builder": "@nrwl/workspace:run-commands",
       "options": {
         "commands": [
-          "cd packages/ai && npm version {args.version}",
-          {
-            "command": "yarn nx run ai:build --production",
-            "forwardAllArgs": false
-          },
-          {
-            "command": "cd dist/packages/ai && npm publish",
-            "forwardAllArgs": false
-          }
+          "cd ./packages/ai && npm version {args.version}",
+          "yarn nx run ai:build --production",
+          "cd dist/packages/ai && npm publish --access public"
         ],
         "cwd": "./",
         "parallel": false

@@ -1,5 +1,17 @@
 {
-  "name": "@openai-cli/ai",
-  "version": "0.0.1",
-  "type": "commonjs"
+  "name": "@miroslavzeman/chatgpt-cli",
+  "description": "Simple ChatGPT extension acting like a terminal AI running on Node. 🚀",
+  "version": "1.0.0",
+  "license": "MIT",
+  "author": "Miroslav Zeman <me@miroslavzeman.dev>",
+  "type": "commonjs",
+  "keywords": [
+    "chatgpt",
+    "api",
+    "node",
+    "cli"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
 }
