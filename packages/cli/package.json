@@ -1,5 +1,5 @@
 {
-  "name": "@miroslavzeman/chatgpt-cli",
+  "name": "@openai-cli/cli",
   "description": "Simple ChatGPT extension acting like a terminal AI running on Node. 🚀",
   "version": "1.0.0",
   "license": "MIT",

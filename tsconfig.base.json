@@ -15,7 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@openai-cli/ai": ["packages/ai/src/index.ts"]
+      "@openai-cli/cli": ["packages/cli/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
