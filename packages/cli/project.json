@@ -31,7 +31,7 @@
       "executor": "@nrwl/workspace:run-commands",
       "options": {
         "commands": [
-          "cd ./packages/cli && npm version {args.version}",
+          "cd ./packages/cli && npm version {process.env.version}",
           "yarn nx run cli:build --production",
           "cd dist/packages/cli && npm publish --access public"
         ],
