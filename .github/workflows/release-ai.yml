@@ -36,5 +36,5 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           VERSION: ${{ steps.changelog.outputs.version }}
-        run: echo "Version ${{process.env.VERSION}}"
+        run: echo "Version ${{env.VERSION}}"
 #        run: yarn nx run cli:publish
