@@ -13,5 +13,9 @@
   ],
   "repository": "https://github.com/miroslavzeman/openai",
   "homepage": "https://github.com/miroslavzeman/openai",
-  "url": "https://github.com/miroslavzeman/openai/issues"
+  "url": "https://github.com/miroslavzeman/openai/issues",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  }
 }
