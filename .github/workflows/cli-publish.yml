@@ -12,16 +12,21 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Check tag
+        id: check_tag
+        run: |
+          if [[ ${{ github.ref }} == "refs/tags/"* ]]; then
+          else
+            echo "This workflow can only be triggered by a tag."
+            exit 1
+          fi
+
       - name: Source
         id: source
         run: |
           echo "SOURCE_NAME=${GITHUB_REF#refs/*/}" >> $GITHUB_OUTPUT
           echo "SOURCE_BRANCH=${GITHUB_REF#refs/heads/}" >> $GITHUB_OUTPUT
           echo "SOURCE_TAG=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
-
-      - name: Echo
-        run: |
-          echo ${{ toJSON(steps.source.outputs) }}
 
       - name: Validate tag
         run: |
