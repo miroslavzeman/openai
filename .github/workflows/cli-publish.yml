@@ -17,6 +17,7 @@ jobs:
         with:
           node-version: "lts/*"
           cache: "yarn"
+          registry-url: 'https://registry.npmjs.org'
 
       - name: Check tag
         id: check_tag
