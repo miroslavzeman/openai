@@ -1,5 +1,12 @@
 
 
+## [0.4.3](https://github.com/miroslavzeman/openai-cli/compare/0.4.2...0.4.3) (2023-03-10)
+
+
+### Bug Fixes
+
+* remove typings from package build ([#17](https://github.com/miroslavzeman/openai-cli/issues/17)) ([e0c57c3](https://github.com/miroslavzeman/openai-cli/commit/e0c57c338df0a1469d63be8a934a2101be658e3b))
+
 ## [0.4.2](https://github.com/miroslavzeman/openai-cli/compare/0.4.1...0.4.2) (2023-03-10)
 
 
