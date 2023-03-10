@@ -1,7 +1,7 @@
 {
   "name": "openai-cli",
   "description": "A monorepo with ChatGPT extensions. 🚀",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "license": "MIT",
   "dependencies": {
     "commander": "^10.0.0",
