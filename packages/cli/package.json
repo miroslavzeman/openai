@@ -20,8 +20,5 @@
   "publishConfig": {
     "registry": "https://registry.npmjs.org",
     "access": "public"
-  },
-  "devDependencies": {
-    "tslib": "^2.5.0"
   }
 }
