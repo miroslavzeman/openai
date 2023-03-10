@@ -21,22 +21,12 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
-      - name: Author identity
+      - name: git config
         run: |
-          git config --global user.email "me@miroslavzeman.dev"
-          git config --global user.name "Miroslav Zeman"
+          git config user.name "${GITHUB_ACTOR}"
+          git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
 
       - name: Changelog
-        id: changelog
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          yarn release-it --ci --dry-run
-          echo "${{ toJson(steps.changelog.outputs) }}"
-
-      - name: Npm
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-          VERSION: ${{ steps.changelog.outputs.version  }}
-        run: echo "Version ${{toJson(steps.changelog.outputs)}}"
-#        run: yarn nx run cli:publish
+        run: yarn release-it --ci

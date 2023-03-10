@@ -1,0 +1,28 @@
+name: Publish OpenAI CLI
+on:
+  workflow_dispatch:
+
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "lts/*"
+          cache: "yarn"
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Publish
+        run: yarn nx run cli:publish
+        env:
+          VERSION: ${GITHUB_REF##*/}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
