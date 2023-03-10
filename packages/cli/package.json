@@ -3,7 +3,7 @@
   "description": "ChatGPT API inside of terminal running on Node. 🚀",
   "version": "1.0.0",
   "license": "MIT",
-  "author": "Miroslav Zeman <me@miroslavzeman.dev>",
+  "author": "Miroslav Zeman <me@miroslavzeman.dev> (https://miroslavzeman.dev)",
   "type": "commonjs",
   "keywords": [
     "chatgpt",
@@ -12,7 +12,10 @@
     "cli"
   ],
   "repository": "https://github.com/miroslavzeman/openai",
+  "homepage": "https://github.com/miroslavzeman/openai",
+  "url": "https://github.com/miroslavzeman/openai/issues",
   "publishConfig": {
+    "registry": "https://registry.npmjs.org",
     "access": "public"
   }
 }

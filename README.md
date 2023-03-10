@@ -11,7 +11,7 @@ $ npm install -g ADD_PACKAGE_NAME
 
 ## Usage
 
-### Initialize the CLI 🛠️
+### Initialization
 
 Before using the tool you have to initialize your API key. You can get your API key from [OpenAI](https://platform.openai.com/account/api-keys).
 
@@ -27,9 +27,9 @@ Options:
   -h, --help             display help for command
 ```
 
-### Use the tool! 🚀
+### Usage
 
-Once you setup your API key you're ready to go!
+Once you configure your API key you're ready to go!
 
 ```console
 $ ai "Hey! Isn't it amazing to talk to you through my terminal? Finally, I don't have to go away from my IDE!"
@@ -37,11 +37,11 @@ $ ai "Hey! Isn't it amazing to talk to you through my terminal? Finally, I don't
 I'm glad you find it convenient! As an AI language model, my purpose is to assist you in any way I can. If you have any specific questions or requests, feel free to let me know.
 ```
 
-## Additional options
+## Options
 
 ### Price and token usage
 
-You can use the `-u` or `--usage` flag to see how many tokens you have spent and how much it cost you.
+You can use the `-u` or `--usage` flag to see how many tokens you have spent on the request and how much it cost you.
 
 ```console
 $ ai -u "How much does ChatGPT API costs to use the tool?"

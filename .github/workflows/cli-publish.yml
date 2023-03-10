@@ -12,25 +12,27 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Source
-        id: source
-        run: |
-          echo ::set-output name=SOURCE_NAME::${GITHUB_REF#refs/*/}
-          echo ::set-output name=SOURCE_BRANCH::${GITHUB_REF#refs/heads/}
-          echo ::set-output name=SOURCE_TAG::${GITHUB_REF#refs/tags/}
-
-      - name: Validate tag
-        run: |
-          if [[ ${{ steps.source.outputs.SOURCE_TAG }} == "" ]]; then
-            echo "This workflow can only be triggered by a tag."
-            exit 1
-          fi
-
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: "lts/*"
           cache: "yarn"
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Check tag
+        id: check_tag
+        run: |
+          if [[ ${{ github.ref }} != "refs/tags/"* ]]; then
+            echo "This workflow can only be triggered by a tag." >&2
+            exit 1
+          fi
+
+      - name: Source
+        id: source
+        run: |
+          echo "SOURCE_NAME=${GITHUB_REF#refs/*/}" >> $GITHUB_OUTPUT
+          echo "SOURCE_BRANCH=${GITHUB_REF#refs/heads/}" >> $GITHUB_OUTPUT
+          echo "SOURCE_TAG=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
