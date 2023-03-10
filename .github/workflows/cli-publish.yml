@@ -1,4 +1,4 @@
-name: Release OpenAI CLI
+name: Publish OpenAI CLI
 on:
   workflow_dispatch:
 
@@ -21,19 +21,8 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
-      - name: Author identity
-        run: |
-          git config --global user.email "me@miroslavzeman.dev"
-          git config --global user.name "Miroslav Zeman"
-
-      - name: Changelog
-        id: changelog
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: yarn release-it --ci
-
-      - name: Npm
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-          VERSION: ${{ steps.changelog.outputs.version }}
+      - name: Publish
         run: yarn nx run cli:publish
+        env:
+          VERSION: ${GITHUB_REF##*/}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
