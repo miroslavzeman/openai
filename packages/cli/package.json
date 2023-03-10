@@ -11,6 +11,9 @@
     "node",
     "cli"
   ],
+  "bin": {
+    "ai": "./src/index.js"
+  },
   "repository": "https://github.com/miroslavzeman/openai",
   "homepage": "https://github.com/miroslavzeman/openai",
   "url": "https://github.com/miroslavzeman/openai/issues",
