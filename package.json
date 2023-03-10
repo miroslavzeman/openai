@@ -33,8 +33,5 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/miroslavzeman/openai-cli.git"
-  },
-  "publishConfig": {
-    "access": "public"
   }
 }
