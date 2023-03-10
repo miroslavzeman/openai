@@ -21,9 +21,6 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
-      - name: Echo
-        run: echo ${{ toJson(github) }}
-
       - name: Publish
         run: yarn nx run cli:publish
         env:
