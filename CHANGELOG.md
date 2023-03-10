@@ -1,5 +1,12 @@
 
 
+## [0.4.4](https://github.com/miroslavzeman/openai-cli/compare/0.4.3...0.4.4) (2023-03-10)
+
+
+### Bug Fixes
+
+* add missing tslib dependency due importHelpers ([#18](https://github.com/miroslavzeman/openai-cli/issues/18)) ([7f7fc0e](https://github.com/miroslavzeman/openai-cli/commit/7f7fc0e1688e88e7bd2fe02d99f727facec36c06))
+
 ## [0.4.3](https://github.com/miroslavzeman/openai-cli/compare/0.4.2...0.4.3) (2023-03-10)
 
 
