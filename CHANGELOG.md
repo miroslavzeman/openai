@@ -1,5 +1,12 @@
 
 
+## [0.4.2](https://github.com/miroslavzeman/openai-cli/compare/0.4.1...0.4.2) (2023-03-10)
+
+
+### Bug Fixes
+
+* add executable needed for global module ([#16](https://github.com/miroslavzeman/openai-cli/issues/16)) ([348268c](https://github.com/miroslavzeman/openai-cli/commit/348268c20257529d74298512f5dcb4284cd115b0))
+
 ## [0.4.1](https://github.com/miroslavzeman/openai-cli/compare/0.4.0...0.4.1) (2023-03-10)
 
 
