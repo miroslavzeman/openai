@@ -5,8 +5,7 @@
   "license": "MIT",
   "dependencies": {
     "commander": "^10.0.0",
-    "openai": "^3.2.1",
-    "tslib": "^2.0.0"
+    "openai": "^3.2.1"
   },
   "devDependencies": {
     "@nrwl/cli": "13.9.5",
