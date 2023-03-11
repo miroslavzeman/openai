@@ -1,6 +1,9 @@
 # OpenAI CLI
 
-Have you ever wanted to use OpenAI's ChatGPT from the command line? Well now you can!
+Have you ever wanted to use OpenAI's ChatGPT from the command line? Well now you can! 🚀
+
+
+![alt text](docs/static/terminal.gif "Title")
 
 ## Installation
 
@@ -38,6 +41,19 @@ I'm glad you find it convenient! As an AI language model, my purpose is to assis
 ```
 
 ## Options
+
+
+### Default prompt
+
+The AI has default configuration prompt to act like a linux terminal. In case you want to change it, you can use the `-p` or `--prompt` flag.
+
+> I want you to act as a linux terminal. I will ask questions and you will reply with command for terminal. I want you to only reply with the terminal command nothing else. Do not write explanations. Do not type commands unless I instruct you to do so. When I need to tell you something in English, I will do so by putting text inside curly brackets {like this}.
+
+You can override the default prompt with some [awesome-chatgpt-prompts](https://github.com/f/awesome-chatgpt-prompts) like this.
+
+```console
+$ ai -p "Act like not tested npm module and always reply with some ironic error message."
+```
 
 ### Price and token usage
 
