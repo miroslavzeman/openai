@@ -26,10 +26,11 @@ program.hook('preAction', (thisCommand, actionCommand) => {
  */
 program
   .command('init')
-  .description('Initialize the tool with your API key')
-  .option('-k, --apiKey <apiKey>', 'Your API key')
-  .option('-p, --prompt <prompt>', 'Default prompt')
-  .option('-u, --usage', 'Show usage and price for each message')
+  .description('Initialize tool configuration')
+  .option('-k, --apiKey <apiKey>', 'set ChatGPT API key')
+  .option('-p, --prompt <prompt>', 'set default prompt')
+  .option('-l, --limit <limit>', 'set conversation history limit', '20')
+  .option('-u, --usage', 'show usage and price for each message')
   .action((options) => saveConfiguration(options));
 
 /**
@@ -37,10 +38,11 @@ program
  */
 program
   .command('update')
-  .description('Update the tool configuration')
-  .option('-k, --apiKey <apiKey>', 'Your API key')
-  .option('-p, --prompt <prompt>', 'Default prompt')
-  .option('-u, --usage', 'Show usage and price for each message')
+  .description('Update tool configuration')
+  .option('-k, --apiKey <apiKey>', 'update ChatGPT API key')
+  .option('-p, --prompt <prompt>', 'update default prompt')
+  .option('-l, --limit <limit>', 'update conversation history limit', '20')
+  .option('-u, --usage', 'show usage and price for each message')
   .action((options) => updateConfiguration(options));
 
 /**
@@ -48,7 +50,7 @@ program
  */
 program
   .command('clear')
-  .description('Clear the conversation')
+  .description('Clear conversation history, so new default prompt to be set')
   .action(() => clearMessages());
 
 /**

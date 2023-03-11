@@ -8,6 +8,7 @@ export interface Configuration {
   apiKey?: string;
   prompt?: string;
   usage?: boolean;
+  messagesLimit?: number;
 }
 
 const configPathname = path.join(__dirname, 'cli.configuration.json');

@@ -3,18 +3,23 @@ import * as path from 'path';
 import { ChatCompletionRequestMessage } from 'openai/api';
 import { loadConfiguration } from './configuration';
 
-const context = loadConfiguration();
+/**
+ * Default messages limit for the chat history
+ */
+const DEFAULT_MESSAGES_LIMIT = 20;
 
 /**
- * Initial configuration message
+ * Default configuration message
  */
 const DEFAULT_PROMPT_CONFIGURATION =
   'I want you to act as a linux terminal. I will ask questions and you will reply with command for terminal. I want you to only reply with the terminal command nothing else. do not write explanations. do not type commands unless I instruct you to do so. When I need to tell you something in English, I will do so by putting text inside curly brackets {like this}.';
 
-const DEFAULT_PROMPT_CONFIGURATION_MESSAGE: ChatCompletionRequestMessage = {
+const getDefaultPromptConfigurationMessage = (
+  customPrompt: string | undefined
+): ChatCompletionRequestMessage => ({
   role: 'system',
-  content: context.prompt || DEFAULT_PROMPT_CONFIGURATION,
-};
+  content: customPrompt || DEFAULT_PROMPT_CONFIGURATION,
+});
 
 const messagesPathname = path.join(__dirname, 'cli.messages.json');
 
@@ -27,30 +32,36 @@ export const loadMessages = (): ChatCompletionRequestMessage[] => {
     const fileContent = fs.readFileSync(messagesPathname, 'utf8');
     return JSON.parse(fileContent);
   } else {
-    return [DEFAULT_PROMPT_CONFIGURATION_MESSAGE];
+    const { prompt } = loadConfiguration();
+
+    return [getDefaultPromptConfigurationMessage(prompt)];
   }
 };
 /**
  * Save messages history to the file to keep the chat history state.
+ * Also limit the number of messages so the queue won't grow indefinitely,
+ * keeps the newest chat history state, and it's context.
  * @param messages
  */
 export const saveMessages = (
   messages: ChatCompletionRequestMessage[]
 ): void => {
-  // Check amount of messages, if larger than limit, remove the oldest one.
-  const limit = 20;
-  let limitMessages = messages;
+  const { prompt, messagesLimit } = loadConfiguration();
+
+  const limit = messagesLimit || DEFAULT_MESSAGES_LIMIT;
 
   if (messages.length >= limit) {
-    const start = Math.max(0, limitMessages.length - limit);
-    limitMessages = [
-      DEFAULT_PROMPT_CONFIGURATION_MESSAGE,
-      ...messages.slice(start),
+    const start = Math.max(0, messages.length - limit);
+    const slicedMessages = messages.slice(start);
+
+    messages = [
+      getDefaultPromptConfigurationMessage(prompt),
+      ...slicedMessages,
     ];
   }
 
   // Store the configuration in the file
-  const config = JSON.stringify(limitMessages);
+  const config = JSON.stringify(messages);
 
   fs.writeFileSync(messagesPathname, config);
 };
