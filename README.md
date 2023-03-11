@@ -78,3 +78,7 @@ When you update default prompt, make sure you clear the conversation history. Ot
 ```console
 $ ai clear
 ```
+
+## License
+
+This project is licensed under the terms of the MIT License. 
