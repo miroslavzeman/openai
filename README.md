@@ -53,10 +53,10 @@ Options:
 
 #### Pricing and token usage
 
-In case you use `--usage` flag, the tool will show you how many tokens you have spent on the request and how much it cost you.
+In case you update configuration with `--usage` flag, the tool will show you how many tokens you have spent on the request and how much it cost you.
 
 ```conosle
-$ ai -u "How much does ChatGPT API costs to use the tool?"
+$ ai "How much does ChatGPT API costs to use the tool?"
 
 The ChatGPT API pricing details can be found on the official website of ChatGPT. Here is the link to the pricing section: https://openai.com/pricing
 
