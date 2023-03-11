@@ -1,6 +1,11 @@
 import { Command } from 'commander';
+import {
+  loadConfiguration,
+  saveConfiguration,
+  updateConfiguration,
+} from './configuration';
 import { request } from './request';
-import { loadConfiguration, saveConfiguration } from './configuration';
+import { clearMessages } from './messages';
 
 const program = new Command();
 
@@ -21,17 +26,39 @@ program.hook('preAction', (thisCommand, actionCommand) => {
  */
 program
   .command('init')
-  .description('Initialize the tool with your API key')
-  .option('-k, --apiKey <apiKey>', 'Your API key')
-  .action(({ apiKey }) => saveConfiguration(apiKey));
+  .description('Initialize tool configuration')
+  .option('-k, --apiKey <apiKey>', 'set ChatGPT API key')
+  .option('-p, --prompt <prompt>', 'set default prompt')
+  .option('-l, --limit <limit>', 'set conversation history limit', '20')
+  .option('-u, --usage', 'show usage and price for each message')
+  .action((options) => saveConfiguration(options));
+
+/**
+ * Allow to change the default prompt message
+ */
+program
+  .command('update')
+  .description('Update tool configuration')
+  .option('-k, --apiKey <apiKey>', 'update ChatGPT API key')
+  .option('-p, --prompt <prompt>', 'update default prompt')
+  .option('-l, --limit <limit>', 'update conversation history limit', '20')
+  .option('-u, --usage', 'show usage and price for each message')
+  .action((options) => updateConfiguration(options));
+
+/**
+ * Clear messages so new default prompt to be set
+ */
+program
+  .command('clear')
+  .description('Clear conversation history, so new default prompt to be set')
+  .action(() => clearMessages());
 
 /**
  * Handle the message to send to the AI
  */
 program
   .argument('<message>', 'The message to send to the AI')
-  .option('-u, --usage', 'Show the usage and price per request')
-  .action((message, { usage }) => request(message, usage));
+  .action((message) => request(message));
 
 /**
  * Pass the arguments to the program

@@ -1,6 +1,6 @@
 # OpenAI CLI
 
-Have you ever wanted to use OpenAI's ChatGPT from the command line? Well now you can!
+Leverage the power of OpenAI's ChatGPT API directly from the CLI and have a smart assistant in your favourite terminal or IDE! 🚀
 
 ## Installation
 
@@ -18,35 +18,55 @@ Before using the tool you have to initialize your API key. You can get your API 
 ```console
 $ ai init -k YOUR_API_KEY
 
-Usage: index init [options]
+Usage: ai init [options]
 
-Initialize the tool with your API key
+Initialize tool configuration
 
 Options:
-  -k, --apiKey <apiKey>  Your API key
+  -k, --apiKey <apiKey>  set ChatGPT API key
+  -p, --prompt <prompt>  set default prompt
+  -l, --limit <limit>    set conversation history limit (default: "20")
+  -u, --usage            show usage and price for each message
   -h, --help             display help for command
 ```
 
-### Usage
+### Update configuration
 
-Once you configure your API key you're ready to go!
+You can update your API key, default prompt and other configuration options via `update` command.
+
+> **Note:** When you update the default prompt, don't forget to use `ai clear` command to clear the conversation history, so you start up a new conversation with the new prompt setup.
 
 ```console
-$ ai "Hey! Isn't it amazing to talk to you through my terminal? Finally, I don't have to go away from my IDE!"
+$ ai update
 
-I'm glad you find it convenient! As an AI language model, my purpose is to assist you in any way I can. If you have any specific questions or requests, feel free to let me know.
+Usage: ai update [options]
+
+Update tool configuration
+
+Options:
+  -k, --apiKey <apiKey>  update ChatGPT API key
+  -p, --prompt <prompt>  update default prompt
+  -l, --limit <limit>    update conversation history limit (default: "20")
+  -u, --usage            show usage and price for each message
+  -h, --help             display help for command
 ```
 
-## Options
+#### Pricing and token usage
 
-### Price and token usage
+In case you use `--usage` flag, the tool will show you how many tokens you have spent on the request and how much it cost you.
 
-You can use the `-u` or `--usage` flag to see how many tokens you have spent on the request and how much it cost you.
-
-```console
+```conosle
 $ ai -u "How much does ChatGPT API costs to use the tool?"
 
 The ChatGPT API pricing details can be found on the official website of ChatGPT. Here is the link to the pricing section: https://openai.com/pricing
 
 Prompt: 352, Completion: 40, Total: 392, Price: 0.00007840000000000001$
+```
+
+### Clear conversation history
+
+When you update default prompt, make sure you clear the conversation history. Otherwise, the tool will continue to use the old prompt.
+
+```console
+$ ai clear
 ```
