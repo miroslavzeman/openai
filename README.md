@@ -51,6 +51,13 @@ Options:
   -h, --help             display help for command
 ```
 
+#### Default prompt
+
+The tool has a default prompt configuration to act like a linux terminal. You may override the system prompt with `update` command.
+
+> I want you to act as a linux terminal. I will ask questions and you will reply with command for terminal. I want you to only reply with the terminal command nothing else. Do not write explanations. do not type commands unless I instruct you to do so. When I need to tell you something in English, I will do so by putting text inside curly brackets {like this}.
+
+
 #### Pricing and token usage
 
 In case you update configuration with `--usage` flag, the tool will show you how many tokens you have spent on the request and how much it cost you.
@@ -58,7 +65,8 @@ In case you update configuration with `--usage` flag, the tool will show you how
 ```conosle
 $ ai "How much does ChatGPT API costs to use the tool?"
 
-The ChatGPT API pricing details can be found on the official website of ChatGPT. Here is the link to the pricing section: https://openai.com/pricing
+The ChatGPT API pricing details can be found on the official website of ChatGPT.
+Here is the link to the pricing section: https://openai.com/pricing
 
 Prompt: 352, Completion: 40, Total: 392, Price: 0.00007840000000000001$
 ```
