@@ -1,5 +1,12 @@
 
 
+# [0.5.0](https://github.com/miroslavzeman/openai-cli/compare/0.4.6...0.5.0) (2023-03-11)
+
+
+### Features
+
+* extend cli options with prompt and limit override ([#21](https://github.com/miroslavzeman/openai-cli/issues/21)) ([28c21e0](https://github.com/miroslavzeman/openai-cli/commit/28c21e05d73cbe4ad42f57c2d76da4ede3b65f0b))
+
 ## [0.4.6](https://github.com/miroslavzeman/openai-cli/compare/0.4.5...0.4.6) (2023-03-10)
 
 ## [0.4.5](https://github.com/miroslavzeman/openai-cli/compare/0.4.4...0.4.5) (2023-03-10)
