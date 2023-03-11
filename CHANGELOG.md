@@ -1,5 +1,7 @@
 
 
+## [0.5.1](https://github.com/miroslavzeman/openai-cli/compare/0.5.0...0.5.1) (2023-03-11)
+
 # [0.5.0](https://github.com/miroslavzeman/openai-cli/compare/0.4.6...0.5.0) (2023-03-11)
 
 
