@@ -1,5 +1,7 @@
 import { Command } from 'commander';
 import {
+  Configuration,
+  DEFAULT_MODEL_CONFIG,
   loadConfiguration,
   saveConfiguration,
   updateConfiguration,
@@ -22,16 +24,17 @@ program.hook('preAction', (thisCommand, actionCommand) => {
 });
 
 /**
- * Initialize the configuration file with the API key
+ * Initialize the configuration file with the API key and model
  */
 program
   .command('init')
   .description('Initialize tool configuration')
   .option('-k, --apiKey <apiKey>', 'set ChatGPT API key')
+  .option('-m, --model <model>', 'set ChatGPT model', DEFAULT_MODEL_CONFIG)
   .option('-p, --prompt <prompt>', 'set default prompt')
   .option('-l, --limit <limit>', 'set conversation history limit', '20')
   .option('-u, --usage', 'show usage and price for each message')
-  .action((options) => saveConfiguration(options));
+  .action((options: Configuration) => saveConfiguration(options));
 
 /**
  * Allow to change the default prompt message
@@ -40,6 +43,7 @@ program
   .command('update')
   .description('Update tool configuration')
   .option('-k, --apiKey <apiKey>', 'update ChatGPT API key')
+  .option('-m, --model <model>', 'update ChatGPT model', DEFAULT_MODEL_CONFIG)
   .option('-p, --prompt <prompt>', 'update default prompt')
   .option('-l, --limit <limit>', 'update conversation history limit', '20')
   .option('-u, --usage', 'show usage and price for each message')

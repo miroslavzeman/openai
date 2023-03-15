@@ -24,6 +24,7 @@ Initialize tool configuration
 
 Options:
   -k, --apiKey <apiKey>  set ChatGPT API key
+  -m, --model <model>    set ChatGPT model (default: "gpt-3.5-turbo")
   -p, --prompt <prompt>  set default prompt
   -l, --limit <limit>    set conversation history limit (default: "20")
   -u, --usage            show usage and price for each message
@@ -45,6 +46,7 @@ Update tool configuration
 
 Options:
   -k, --apiKey <apiKey>  update ChatGPT API key
+  -m, --model <model>    update ChatGPT model (default: "gpt-3.5-turbo")
   -p, --prompt <prompt>  update default prompt
   -l, --limit <limit>    update conversation history limit (default: "20")
   -u, --usage            show usage and price for each message
