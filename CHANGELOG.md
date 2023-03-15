@@ -1,5 +1,12 @@
 
 
+# [0.6.0](https://github.com/miroslavzeman/openai-cli/compare/0.5.2...0.6.0) (2023-03-15)
+
+
+### Features
+
+* add gpt-4 and other models support via --model option ([#25](https://github.com/miroslavzeman/openai-cli/issues/25)) ([9c83c08](https://github.com/miroslavzeman/openai-cli/commit/9c83c08101ef690de44391066bbd137c9277380b))
+
 ## [0.5.2](https://github.com/miroslavzeman/openai-cli/compare/0.5.1...0.5.2) (2023-03-11)
 
 ## [0.5.1](https://github.com/miroslavzeman/openai-cli/compare/0.5.0...0.5.1) (2023-03-11)
