@@ -6,7 +6,6 @@ Leverage the power of OpenAI's ChatGPT API directly from the CLI and have a smar
 
 ```console
 $ npm install -g @miroslavzeman/openai-cli
-$ yarn global add @miroslavzeman/openai-cli
 ```
 
 ## Usage
